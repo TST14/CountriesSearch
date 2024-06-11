@@ -8,14 +8,24 @@ const App = () => {
   const [allCountries, setAllCountries] = useState([]);
   const [displayedCountries, setDisplayedCountries] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const getCountries = async () => {
+  const getCountries = async (retryCount = 3) => {
     try {
       setLoading(true);
-      const response = await axios.get("https://restcountries.com/v3.1/all");
+      setError(null); // Clear previous errors
+      const response = await axios.get("https://restcountries.com/v3.1/all", {
+        timeout: 20000, // Set a longer timeout limit of 20 seconds
+      });
       setAllCountries(response.data);
     } catch (err) {
-      console.error(err.message);
+      if (retryCount > 0) {
+        console.warn(`Retrying... (${3 - retryCount + 1})`);
+        setTimeout(() => getCountries(retryCount - 1), 1000);
+      } else {
+        setError("Failed to fetch countries. Please try again later.");
+        console.error(err.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -54,6 +64,8 @@ const App = () => {
       <main className="container">
         {loading ? (
           <p>Loading...</p>
+        ) : error ? (
+          <p>{error}</p>
         ) : (
           displayedCountries.map((country) => (
             <article className="cardWrapper" key={country.name.common}>
