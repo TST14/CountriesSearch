@@ -1,0 +1,37 @@
+.cardContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 0 2px gray;
+  padding: 0.4rem;
+}
+
+.imageWrapper {
+  height: 4em;
+  width: 4em;
+  margin-bottom: 0.5rem;
+}
+
+.flagImage {
+  width: 100%;
+  height: 100%;
+}
+
+.textWrapper {
+  height: 20%;
+  width: 100%;
+  text-align: center;
+}
+
+.textWrapper span {
+  font-weight: 500;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  width: 100%;
+}
