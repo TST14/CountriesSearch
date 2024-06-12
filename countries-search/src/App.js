@@ -19,11 +19,6 @@ const App = () => {
       });
       setAllCountries(response.data);
     } catch (err) {
-      if (retryCount > 0) {
-        console.warn(`Retrying... (${3 - retryCount + 1})`);
-        setTimeout(() => getCountries(retryCount - 1), 1000);
-      } else {
-        setError("Failed to fetch countries. Please try again later.");
         console.error(err.message);
       }
     } finally {
