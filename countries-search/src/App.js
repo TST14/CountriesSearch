@@ -19,8 +19,7 @@ const App = () => {
       });
       setAllCountries(response.data);
     } catch (err) {
-        console.error(err.message);
-      }
+      console.error(err.message);
     } finally {
       setLoading(false);
     }
