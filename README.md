@@ -8,7 +8,6 @@ CountriesSearch: A React-based web interface displaying flags and names of count
 - [Installation](#installation)
 - [Usage](#usage)
 - [Code Overview](#code-overview)
-- [Contributing](#contributing)
 
 ## Features
 
